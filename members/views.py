@@ -14,8 +14,8 @@ from django.utils import timezone
 
 from staff.models import Member, Membership, Transaction, DailyLog
 from forms import EditProfileForm
-from interlink.forms import MailingListSubscriptionForm
-from interlink.models import IncomingMail
+from comlink.forms import MailingListSubscriptionForm
+from comlink.models import IncomingMail
 from models import HelpText, UserNotification
 from arpwatch import arp
 from arpwatch.models import ArpLog, UserDevice

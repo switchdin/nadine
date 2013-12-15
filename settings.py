@@ -111,10 +111,10 @@ INSTALLED_APPS = (
 	'south',
 	'staff',
 	'members',
-	'interlink',
 	'arpwatch',
 	'tablet',
 	'gnotty',
+	'comlink'
 )
 
 #

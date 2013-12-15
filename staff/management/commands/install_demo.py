@@ -11,7 +11,7 @@ from django.core.management import call_command
 from django.core.management.base import BaseCommand, CommandError
 
 from staff.models import BillingLog, Bill, Transaction, DailyLog, MembershipPlan, Membership, ExitTask, Onboard_Task, Member, User, Industry, Neighborhood
-from interlink.models import MailingList, IncomingMail, OutgoingMail
+from comlink.models import MailingList, IncomingMail, OutgoingMail
 
 class Command(BaseCommand):
 	help = "Destructively resets the database and installs some demonstration data."

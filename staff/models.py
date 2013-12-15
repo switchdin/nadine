@@ -14,7 +14,7 @@ from django.utils import timezone
 from monthdelta import MonthDelta, monthmod
 from taggit.managers import TaggableManager
 from taggit.models import TaggedItemBase
-
+from comlink.models import MailingList
 from south.modelsinspector import add_introspection_rules
 add_introspection_rules([], ["^django_localflavor_us\.models\.USStateField"])
 add_introspection_rules([], ["^django_localflavor_us\.models\.PhoneNumberField"])
@@ -159,7 +159,6 @@ class MemberManager(models.Manager):
 
 	def unsubscribe_recent_dropouts(self):
 		"""Remove mailing list subscriptions from members whose memberships expired yesterday and they do not start a membership today"""
-		from interlink.models import MailingList
 		recently_expired = Member.objects.filter(memberships__end_date=timezone.now().date() - timedelta(days=1)).exclude(memberships__start_date=timezone.now().date())
 		for member in recently_expired:
 			MailingList.objects.unsubscribe_from_all(member.user)
@@ -410,7 +409,6 @@ def user_save_callback(sender, **kwargs):
 	created = kwargs['created']
 	if Member.objects.filter(user=user).count() > 0: return
 	Member.objects.create(user=user)
-
 post_save.connect(user_save_callback, sender=User)
 
 # Add some handy methods to Django's User object
@@ -533,6 +531,17 @@ class Membership(models.Model):
 		verbose_name = "Membership"
 		verbose_name_plural = "Memberships"
 		ordering = ['start_date'];
+
+# When a membership is created, add the user to any opt-out mailing lists
+def membership_save_callback(sender, **kwargs):
+   membership = kwargs['instance']
+   created = kwargs['created']
+   if not created: return
+   # If the member is just switching from one membership to another, don't change subscriptions
+   if Membership.objects.filter(member=membership.member, end_date=membership.start_date-timedelta(days=1)).count() != 0: return
+   mailing_lists = MailingList.objects.filter(is_opt_out=True)
+   for ml in mailing_lists: ml.subscribers.add(membership.member.user)
+post_save.connect(membership_save_callback, sender=Membership)
 
 class ExitTaskManager(models.Manager):
 	def uncompleted_count(self):

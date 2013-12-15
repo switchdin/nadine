@@ -27,7 +27,7 @@ After running the <code>migrate</code> command, run <code>./manage.py createsupe
 
 Now run the tests to make certain that everthing is installed:
 
-    ./manage.py test staff interlink
+    ./manage.py test staff staff
 
 Both Django and South have excellent documentation, so check there if you run into trouble.
 
@@ -70,18 +70,6 @@ You will need to run that command as a long lived process.  On linux and other u
  - If you are getting a "flat namespace" error when you try to do a syncdb then you most likely are running OS X 10.6
    and it's trying to run python in 64bit mode.  Do the following:
    $ defaults write com.apple.versioner.python Prefer-32-Bit -bool yes
-
-# Interlink (mailing lists) notes:
-
-In the interest of shipping more quickly, we have made certain assumptions about the interlink mailing lists which may or may not suit everyone's needs.
-
-- the reply-to address for mail from a list is the original sender, not the entire list
-- attachments are neither saved nor sent to the list, but a removal note is appended to the message
-- incoming messages are parsed for a single text message and a single html message (not multiple MIME messages)
-- you can set the frequency of mail fetching by changing the value in CELERYBEAT_SCHEDULE in your settings.py or local_settings.py
-- loops and bounces are silently dropped
-- any email sent to a list which is not in a subscriber's user or membership record is moderated
-- the sender of a message receives a copy of the message like any other subscriber
 
 ## License & Copyright
 
