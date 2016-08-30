@@ -13,6 +13,10 @@ requests==2.10.0
 cryptography==1.4
 suds-jurko==0.6
 
+# Django Jet
+django-jet==1.0.0
+google-api-python-client==1.5.3
+
 # For document signing
 # Newer versions may not work so be cautious when upgrading
 html5lib==1.0b8

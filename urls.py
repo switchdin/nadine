@@ -22,7 +22,10 @@ urlpatterns = [
     url(r'^robots\.txt$', lambda r: HttpResponse("User-agent: *\nDisallow: /", content_type="text/plain")),
     url(r'^cache\.manifest$', lambda r: HttpResponse(get_manifest(), content_type="text/plain")),
 
+    url(r'^jet/', include('jet.urls', 'jet')),  # Django JET URLS
+    url(r'^jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),  # Django JET dashboard URLS
     url(r'^admin/', include(admin.site.urls)),
+
     url(r'^staff/', include('staff.urls')),
     url(r'^member/', include('members.urls')),
     url(r'^interlink/', include('interlink.urls')),
