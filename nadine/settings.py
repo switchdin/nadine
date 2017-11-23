@@ -32,6 +32,7 @@ STATICFILES_FINDERS = (
 )
 
 DEBUG = False
+ALLOWED_HOSTS='eighteen04-nadine.herokuapp.com'
 
 SECRET_KEY = 'SET_YOUR_SECRET_KEY_IN_LOCAL_SETTINGS'
 
