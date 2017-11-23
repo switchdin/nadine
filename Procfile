@@ -1,1 +1,1 @@
-web: ./manage.py runserver 0.0.0.0:80
+web: ./manage.py runserver 0.0.0.0:5000
