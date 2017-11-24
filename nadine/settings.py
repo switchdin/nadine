@@ -27,7 +27,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = ('themes/active/static', 'static', )
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
-#    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
