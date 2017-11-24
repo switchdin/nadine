@@ -33,6 +33,17 @@ STATICFILES_FINDERS = (
 
 DEBUG = False
 ALLOWED_HOSTS=['eighteen04-nadine.herokuapp.com']
+# Database Settings
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'd36nfk9m9n6d3o',
+        'USER': 'lrafiexollzenz',
+        'PASSWORD': '36e61c7889041f3e37b76fd8290df1683e60719195a7d3c2aa9a1e6965ead2d1',
+        'HOST': 'ec2-54-221-221-153.compute-1.amazonaws.com',
+        'PORT': '5432',
+    }
+}
 
 SECRET_KEY = 'SET_YOUR_SECRET_KEY_IN_LOCAL_SETTINGS'
 
