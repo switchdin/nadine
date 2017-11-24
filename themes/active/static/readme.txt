@@ -1,1 +1,1 @@
-This file makes sure this folder exists.
+this file makes sure the static filder exists.
