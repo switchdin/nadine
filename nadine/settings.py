@@ -21,7 +21,7 @@ SITE_PROTO = "http"
 SITE_ID = 1
 
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
-STATIC_ROOT = '/app/static'
+STATIC_ROOT = '/app/srv/static'
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = ('themes/active/static', 'static', )
