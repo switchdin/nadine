@@ -20,15 +20,40 @@ SITE_DOMAIN = "localhost"
 SITE_PROTO = "http"
 SITE_ID = 1
 
+
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.9/howto/static-files/
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
-STATICFILES_DIRS = ('themes/active/static', 'static', )
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = (
+    os.path.join(PROJECT_ROOT, 'static'), 'themes/active/static', 'static'
+)
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+STATIC_URL = '/static/'
+
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+#    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
 DEBUG = False
+ALLOWED_HOSTS=['eighteen04-nadine.herokuapp.com']
+# Database Settings
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'd36nfk9m9n6d3o',
+        'USER': 'lrafiexollzenz',
+        'PASSWORD': '36e61c7889041f3e37b76fd8290df1683e60719195a7d3c2aa9a1e6965ead2d1',
+        'HOST': 'ec2-54-221-221-153.compute-1.amazonaws.com',
+        'PORT': '5432',
+    }
+}
 
 SECRET_KEY = 'SET_YOUR_SECRET_KEY_IN_LOCAL_SETTINGS'
 
@@ -114,6 +139,7 @@ MIDDLEWARE = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     # 'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 

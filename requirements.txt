@@ -44,3 +44,5 @@ Markdown==2.6.9
 safety==1.6.1
 django-debug-toolbar==1.9.1
 pip-review==1.0
+
+whitenoise
